@@ -1,0 +1,39 @@
+server:
+  port: 9002
+  servlet:
+    context-path: /ceshizhuanyong
+
+#使用druid数据源
+druid:
+  jdbc:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://rds64fw2qrd8q0eg95nmrw.mysql.rds.aliyuncs.com:3306/resto_brand?useUnicode=true&characterEncoding=utf8
+    username: resto
+    password: Canjia2017
+    driverClassName: com.mysql.jdbc.Driver
+#连接池的配置信息
+    initialSize: 5 #管道初始化大小
+    minIdle: 5 #最小空闲连接
+    #maxIdle: 5 #最大空闲连接,过期属性已被maxActive代替
+    maxActive: 20 #最大管道数
+    maxWait: 60000 #管道连接超时时间
+#配置多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+#配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+# 校验SQL，Oracle配置 spring.datasource.validationQuery=SELECT 1 FROM DUAL，如果不配validationQuery项，则下面三项配置无用
+#验证连接是否有效。此参数必须设置为非空字符串，下面三项设置成true才能生效
+    validationQuery: SELECT 1 from dual
+    testWhileIdle: true #指明连接是否被空闲连接回收器(如果有)进行检验.如果检测失败,则连接将被从池中去除
+    testOnBorrow: false #指明是否在从池中取出连接前进行检验,如果检验失败,则从池中去除连接并尝试取出另一个
+    testOnReturn: false #指明是否在归还到池中前进行检验
+#打开PSCache,别且指定每个连接上PSCache的大小
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+#配置监控统计的filters，去掉后监控界面无法sql无法统计，‘wall’用于防火墙
+    filters: stat,wall,log4j
+#通过connectionProperties属性来打开mergeSql功能，慢SQL记录
+    connectionProperties: druid.stat.mergeSql:true;druid.stat.slowSqlMillis:5000;druid.stat.logSlowSql:true
+# 合并多个DruidDataSource的监控数据
+    useGlobalDataSourceStat: true
+#---------------------配置数据源 end-----------------

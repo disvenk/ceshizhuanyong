@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceshizhuanyong.mapper.WechatConfigMapper">
+  <resultMap id="BaseResultMap" type="com.daishaowen.test.model.WechatConfig">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="appid" jdbcType="VARCHAR" property="appid" />
+    <result column="appsecret" jdbcType="VARCHAR" property="appsecret" />
+    <result column="card_id" jdbcType="VARCHAR" property="cardId" />
+    <result column="mchid" jdbcType="VARCHAR" property="mchid" />
+    <result column="mchkey" jdbcType="VARCHAR" property="mchkey" />
+    <result column="pay_cert_path" jdbcType="VARCHAR" property="payCertPath" />
+    <result column="state" jdbcType="TINYINT" property="state" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, appid, appsecret, card_id, mchid, mchkey, pay_cert_path, `state`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wechat_config
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from wechat_config
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.daishaowen.test.model.WechatConfig">
+    insert into wechat_config (id, appid, appsecret, 
+      card_id, mchid, mchkey, 
+      pay_cert_path, `state`)
+    values (#{id,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, #{appsecret,jdbcType=VARCHAR}, 
+      #{cardId,jdbcType=VARCHAR}, #{mchid,jdbcType=VARCHAR}, #{mchkey,jdbcType=VARCHAR}, 
+      #{payCertPath,jdbcType=VARCHAR}, #{state,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.daishaowen.test.model.WechatConfig">
+    insert into wechat_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="appid != null">
+        appid,
+      </if>
+      <if test="appsecret != null">
+        appsecret,
+      </if>
+      <if test="cardId != null">
+        card_id,
+      </if>
+      <if test="mchid != null">
+        mchid,
+      </if>
+      <if test="mchkey != null">
+        mchkey,
+      </if>
+      <if test="payCertPath != null">
+        pay_cert_path,
+      </if>
+      <if test="state != null">
+        `state`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="appsecret != null">
+        #{appsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null">
+        #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="mchid != null">
+        #{mchid,jdbcType=VARCHAR},
+      </if>
+      <if test="mchkey != null">
+        #{mchkey,jdbcType=VARCHAR},
+      </if>
+      <if test="payCertPath != null">
+        #{payCertPath,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.daishaowen.test.model.WechatConfig">
+    update wechat_config
+    <set>
+      <if test="appid != null">
+        appid = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="appsecret != null">
+        appsecret = #{appsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null">
+        card_id = #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="mchid != null">
+        mchid = #{mchid,jdbcType=VARCHAR},
+      </if>
+      <if test="mchkey != null">
+        mchkey = #{mchkey,jdbcType=VARCHAR},
+      </if>
+      <if test="payCertPath != null">
+        pay_cert_path = #{payCertPath,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        `state` = #{state,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.daishaowen.test.model.WechatConfig">
+    update wechat_config
+    set appid = #{appid,jdbcType=VARCHAR},
+      appsecret = #{appsecret,jdbcType=VARCHAR},
+      card_id = #{cardId,jdbcType=VARCHAR},
+      mchid = #{mchid,jdbcType=VARCHAR},
+      mchkey = #{mchkey,jdbcType=VARCHAR},
+      pay_cert_path = #{payCertPath,jdbcType=VARCHAR},
+      `state` = #{state,jdbcType=TINYINT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
